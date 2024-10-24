@@ -37,7 +37,7 @@ def get_ratings():
 
 def create_new_dad_jokes_file_with_categories(rows_and_headers):
 
-    with open("dad_jokes_with_categories.csv","w") as csv_file:
+    with open("dad_jokes_with_categories.csv","w", newline='') as csv_file:
         csv_writer = csv.writer(csv_file)
         csv_writer.writerow(rows_and_headers[1])
 
@@ -46,8 +46,3 @@ def create_new_dad_jokes_file_with_categories(rows_and_headers):
 create_new_dad_jokes_file_with_categories(get_ratings())
 
 
-    # #this is multiple
-    # csv_writer.writerows([['Julius','Cat','catnip',3215],
-    #                       ['Cal','Cat','anything edible',71142],
-    #                       ['Lena','Cat','Sheba',142],
-    #                       ['Bruiser','Featherfin Catfish','fish pellets',54]])
