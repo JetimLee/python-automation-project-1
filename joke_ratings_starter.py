@@ -20,7 +20,9 @@ def get_ratings():
     with open("dad_jokes.csv","r") as csv_file:
         csv_reader = csv.reader(csv_file, delimiter=',')
         #calling next here removes the header row
-        next(csv_reader)
+        # Will return the columns as a value as well, good to know
+        headers = next(csv_reader)
+        headers.append("Rating Category")
         modified_rows = []
 
         for row in csv_reader:
@@ -31,15 +33,15 @@ def get_ratings():
             new_row = [id,joke,rating,category]
             modified_rows.append(new_row)
 
-        return modified_rows
+        return modified_rows, headers
 
-def create_new_dad_jokes_file_with_categories(modified_rows):
+def create_new_dad_jokes_file_with_categories(rows_and_headers):
 
     with open("dad_jokes_with_categories.csv","w") as csv_file:
         csv_writer = csv.writer(csv_file)
-        csv_writer.writerow((["id","joke","rating","category"]))
+        csv_writer.writerow(rows_and_headers[1])
 
-        csv_writer.writerows(modified_rows)
+        csv_writer.writerows(rows_and_headers[0])
 
 create_new_dad_jokes_file_with_categories(get_ratings())
 
